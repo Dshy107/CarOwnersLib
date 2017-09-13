@@ -6,52 +6,70 @@ using System.Threading.Tasks;
 
 namespace CarOwnersLib
 {
+    public enum Color { Black, White, Gray, Red, Green, Blue }
     public class Car
     {
-        public enum Color { Black, White, Gray, Red, Green, Blue }
-        public int Doors { get; set; }
-        public string Model { get; set; }
-        public string registrationNo { get; set; }
+       
+        //public int Doors { get; set; }
+        //public string Model { get; set; }
+        //public string registrationNo { get; set; }
+        public int Doors;
+        public string Model;
+        public string registrationNo;
 
-        public Car()
-        {
-            
-        }
         /// <summary>
-        /// Her skal der være mellem 2 og 5 døre
+        /// Registrerings nummeret skal være på 7 karaktere
         /// </summary>
         /// <returns></returns>
-        public int DoorsNo()
+        private string RegNo
         {
-            int doors = this.Doors;
-            if (doors >= 2 && doors <= 5)
-                throw new ArgumentException("Der må kun være mellem 2 og 5 døre.");
-            return doors;
+            get { return registrationNo; }
+            set
+            {
+                if (RegNo.Length == 7)
+                {
+                    throw new Exception("Der må kun være 7 karaktere i regnummeret");
+                }
+            }
         }
         /// <summary>
         /// Her skal den blive not null
         /// </summary>
         /// <returns></returns>
-        public string ModelNotNull()
+        private string ModelNotNull
         {
-            
-            string model = this.Model;
-            if (model.Equals(null))
-                throw new NullReferenceException("Der skal være en Model.");
-            return model;
-                    
+            get { return Model; }
+            set
+            {
+                if (Model.Equals(null))
+                {
+                    throw new NullReferenceException("Der skal være en Model.");
+                }
+            }
         }
         /// <summary>
-        /// Registrerings nummeret skal være på 7 karaktere
+        /// Her skal der være mellem 2 og 5 døre
         /// </summary>
         /// <returns></returns>
-        public string regNummer()
+        private int DoorsNo
         {
-            string Regnummer = this.registrationNo;
-            if (Regnummer.Length == 7)
-                throw new ArgumentException("Der må kun være 7 karaktere i regnummeret");
-            return Regnummer;
+            get { return Doors; }
+            set
+            {
+                if (Doors >= 2 && Doors <= 5)
+                {
+                    throw new Exception("Der må kun være mellem 2 og 5 døre.");
+                }
+            }
         }
+
+
+        public Car()
+        {
+            
+        }
+       
+       
         
     }
 }
